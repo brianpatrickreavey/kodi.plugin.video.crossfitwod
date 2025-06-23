@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="30011">
+        <setting label="32011" type="text" id="username" default=""/>
+        <setting label="32012" type="text" id="password" option="hidden" default=""/>
+        <setting id="use_youtube_plugin"
+                 type="bool"
+                 label="Use YouTube Kodi plugin for playback"
+                 default="true"
+                 description="Requires YouTube plugin to be installed. If not installed, will fallback to direct playback."
+        />
+    </category>
+</settings>
