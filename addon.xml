@@ -1,6 +1,6 @@
-<?xml version="0.0.1" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.crossfitwod"
-       version="0.0.1" name="Crossfit WOW" provider-name="Brian Reavey">
+       version="0.0.2" name="Crossfit WOD" provider-name="Brian Reavey">
   <requires>
     <import addon="xbmc.python" version="3.0.1"/>
     <import addon="script.module.beautifulsoup4" version="4.12.2"/>
@@ -15,9 +15,9 @@
     <disclaimer lang="en_GB">Unauthorized.  Please visit Crossfit website.  https://www.crossfit.com/</disclaimer>
     <license>GPL-3.0-only	</license>
     <assets>
-      <icon>resources/images/icons/crossfit_logo.png</icon>
+      <icon>resources/images/icons/crossfit_logo.jpg</icon>
       <fanart>resources/images/fanart/crossfit-wanderlust-group-class.jpg</fanart>
     </assets>
-    <news>0.0.1 - Initial layout</news>
+    <news>0.0.2 - Initial functionality</news>
   </extension>
 </addon>
