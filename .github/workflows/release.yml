@@ -19,27 +19,7 @@ jobs:
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
 
       - name: Create ZIP
-        run: |
-          tag="${{ github.ref_name }}"
-          git archive --format=zip --prefix=plugin.video.crossfitwod/ \
-            --output="plugin.video.crossfitwod-${tag}.zip" HEAD
-          python3 - "$tag" << 'PY'
-          import sys, zipfile
-          tag = sys.argv[1]
-          path = f"plugin.video.crossfitwod-{tag}.zip"
-          with zipfile.ZipFile(path) as archive:
-              names = archive.namelist()
-              roots = {name.split("/", 1)[0] for name in names if name}
-              if roots != {"plugin.video.crossfitwod"}:
-                  raise SystemExit(f"zip root is {roots}")
-              addon_xml = "plugin.video.crossfitwod/addon.xml"
-              if addon_xml not in names:
-                  raise SystemExit("addon.xml missing from zip")
-              text = archive.read(addon_xml).decode()
-              if f'version="{tag.lstrip("v")}"' not in text:
-                  raise SystemExit("addon.xml version does not match the tag")
-          print(f"{path} ok, {len(names)} entries")
-          PY
+        run: bash tools/build_release_zip.sh plugin.video.crossfitwod "${{ github.ref_name }}"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2

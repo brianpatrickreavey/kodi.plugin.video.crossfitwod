@@ -31,3 +31,13 @@ jobs:
 
       - name: Validate addon
         run: make validate BRANCH=${{ matrix.kodi-branch }}
+
+  zip:
+    name: zip installs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Check the release zip unpacks as one addon
+        run: bash tools/build_release_zip.sh plugin.video.crossfitwod

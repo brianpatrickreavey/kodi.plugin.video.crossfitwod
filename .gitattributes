@@ -2,3 +2,4 @@
 .gitattributes export-ignore
 .gitignore export-ignore
 Makefile export-ignore
+tools export-ignore
