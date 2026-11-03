@@ -1,0 +1,33 @@
+name: CI Test and Validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_call:
+
+# kodi-addon-checker checks addon.xml and dependency rules for the named
+# Kodi branch. It does not start Kodi. There is no pytest suite in this repo.
+
+jobs:
+  validate:
+    name: validate (${{ matrix.kodi-branch }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        kodi-branch: [matrix, nexus, omega]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      - name: Set up Python
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        with:
+          python-version: "3.12"
+
+      - name: Install kodi-addon-checker
+        run: pip install kodi-addon-checker==0.0.36
+
+      - name: Validate addon
+        run: make validate BRANCH=${{ matrix.kodi-branch }}
